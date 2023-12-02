@@ -1,0 +1,151 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    height: 100svh;
+    background: linear-gradient(90deg, #9ab8fe, #0099c0, #3dd5a8);
+    font-family: Arial, Helvetica, sans-serif;
+    user-select: none;
+}
+
+.score{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: 30px;
+    top: 30px;
+    font-size: 38px;
+    width: 350px;
+    height: 80px;
+    background: linear-gradient(90deg, #bd9afe, #009dc0, #3dd53f);
+    border-radius: 10px;
+}
+
+.grid{
+    display: grid;
+    grid-template-columns: repeat(20, auto);
+    grid-template-rows: repeat(8, auto);
+    padding: 0.6vh;
+    gap: 0.3vh;
+    border-radius: 0.6vh;
+    background-color: rgba(250, 206, 84, 0.5);
+}
+
+.grid>div {
+    position: relative;
+    --cell-size: min(6vh, 9vw);
+    width: var(--cell-size);
+    height: var(--cell-size);
+    border-radius: 0.3vh;
+    background-color: rgba(126, 150, 221, 0.2);
+}
+
+.player {
+    position: absolute;
+    --player-height: min(9vh, 13vw);
+    min-width: var(--cell-size);
+    top: -28px;
+    height: var(--player-height);
+    z-index: 200;
+}
+
+.left {
+    animation: moveLeft 200ms;
+}
+
+.right {
+    animation: moveRight 200ms;
+}
+
+.up {
+    animation: moveUp 200ms;
+}
+
+.down {
+    animation: moveDown 200ms;
+}
+
+.grid>div>div.red-cell {
+    background-color: red;
+}
+
+.grid>div>div.blue-cell {
+    background: blue;
+}
+
+.grid>div>div.green-cell {
+    background: green;
+}
+
+.grid>div>div.yellow-cell {
+    background: rgb(255, 238, 0);
+}
+
+.cell{
+    width: var(--cell-size);
+    height: var(--cell-size);
+}
+
+@keyframes moveLeft {
+    0% {
+        transform: translate3d(50px, 0, 0);
+        animation-timing-function: ease-in;
+    }
+    50% {
+        transform: translate3d(25px, 0px, 0px);
+        animation-timing-function: ease-out;
+    }
+    100% {
+        transform: translate3d(0px, 0px, 0px);
+    }
+}
+
+@keyframes moveRight {
+    0% {
+        transform: translate3d(-50px, 0, 0);
+        animation-timing-function: ease-in;
+    }
+    50% {
+        transform: translate3d(-25px, 0px, 0px);
+        animation-timing-function: ease-out;
+    }
+    100% {
+        transform: translate3d(0px, 0px, 0px);
+    }
+}
+
+@keyframes moveUp {
+    0% {
+        transform: translate3d(0px, 50px, 0);
+        animation-timing-function: ease-in;
+    }
+    50% {
+        transform: translate3d(0px, 25px, 0px);
+        animation-timing-function: ease-out;
+    }
+    100% {
+        transform: translate3d(0px, 0px, 0px);
+    }
+}
+
+@keyframes moveDown {
+    0% {
+        transform: translate3d(0px, -50px, 0);
+        animation-timing-function: ease-in;
+    }
+    50% {
+        transform: translate3d(0px, -25px, 0px);
+        animation-timing-function: ease-out;
+    }
+    100% {
+        transform: translate3d(0px, 0px, 0px);
+    }
+}
