@@ -6,7 +6,7 @@ export class Cell{
         this.cell = document.createElement('div');
         this.state = state;
         this.box;
-        this.drop;
+        this.strike = false;
         this.x = x;
         this.y = y;
         this.initState();
@@ -59,23 +59,29 @@ export class Cell{
     }
 
     takeBox(direction, box){
+
         this.box = box;
         this.cell.append(this.box);
         this.state = 1;
         this.animate(direction);
     }
 
-    checkGround(playfield, crane, drop){
-        if(this.y < PLAYFIELD_ROWS - 1 && playfield[this.y + 1][this.x].state !== 1 || drop){
+    checkGround(playfield, crane){
+        if(this.y < PLAYFIELD_ROWS - 1 && playfield[this.y + 1][this.x].state !== 1 && !this.strike){
             this.animate('default');
             setTimeout(() => {
                 playfield[this.y + 1][this.x].takeBox('down', playfield[this.y][this.x].giveBox());
                 playfield[this.y + 1][this.x].checkGround(playfield, crane);
-            }, 100);
+            }, 600);
             if(playfield[this.y + 1][this.x].state === 2){
                 gameOver();
             }
-        }else{
+        }if(this.strike){
+            this.blowUp();
+            this.strike = false;
+            matrix.generateCrane();
+        }
+        else{
             this.stopDrop(playfield, crane);
         }
     }
@@ -87,6 +93,10 @@ export class Cell{
                 matrix.generateCrane();
             }
         }
+    }
+
+    smashBox(){
+        this.strike = true;
     }
 
     blowUp(){

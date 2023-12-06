@@ -55,7 +55,14 @@ export class Player{
         this.x = x;
         this.y = y;
         this.matrix[this.y][this.x].state = 2;
-        console.log(this.matrix);
+    }
+
+    strikeBox(){
+        for(let i = 1; i <= 2; i++){
+            if(this.matrix[this.y - i][this.x].state){
+                this.matrix[this.y - i + 1][this.x].smashBox();
+            }
+        }
     }
 
     setAminationPlayer(state){
@@ -72,7 +79,8 @@ export class Player{
 
     jump(){
         if(!isGameOver){
-            this.setStateOnCell(this.y - 1, this.x)
+            this.setStateOnCell(this.y - 1, this.x);
+            this.strikeBox();
             this.setStatePlayer('jump');
             this.movePlayer();
             setTimeout(()=> this.checkGround(), 300);
