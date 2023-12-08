@@ -1,4 +1,4 @@
-import { PLAYFIELD_COLUMNS } from "./script.js";
+import { PLAYFIELD_COLUMNS, matrix, GAME_SPEED } from "./script.js";
 
 
 export class Crane{
@@ -35,6 +35,9 @@ export class Crane{
     }
 
     dropBox(){
-        this.playfield[this.y][this.x].checkGround(this.playfield, true);
+        this.playfield[this.y][this.x].checkGround(this.playfield);
+        setTimeout(()=> {
+            matrix.generateCrane();
+        }, GAME_SPEED)
     }
 }

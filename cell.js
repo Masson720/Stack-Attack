@@ -1,5 +1,5 @@
 import {getRandomColor} from './utilites.js';
-import { PLAYFIELD_ROWS, matrix, gameOver, increaseScore } from './script.js';
+import { PLAYFIELD_ROWS, matrix, gameOver, increaseScore, GAME_SPEED } from './script.js';
 
 export class Cell{
     constructor(x, y, state){
@@ -66,13 +66,13 @@ export class Cell{
         this.animate(direction);
     }
 
-    checkGround(playfield, crane){
+    checkGround(playfield){
         if(this.y < PLAYFIELD_ROWS - 1 && playfield[this.y + 1][this.x].state !== 1 && !this.strike){
             this.animate('default');
             setTimeout(() => {
                 playfield[this.y + 1][this.x].takeBox('down', playfield[this.y][this.x].giveBox());
-                playfield[this.y + 1][this.x].checkGround(playfield, crane);
-            }, 600);
+                playfield[this.y + 1][this.x].checkGround(playfield);
+            }, GAME_SPEED);
             if(playfield[this.y + 1][this.x].state === 2){
                 gameOver();
             }
@@ -82,16 +82,13 @@ export class Cell{
             matrix.generateCrane();
         }
         else{
-            this.stopDrop(playfield, crane);
+            this.stopDrop(playfield);
         }
     }
 
-    stopDrop(playfield, crane){
+    stopDrop(playfield){
         if(this.y >= PLAYFIELD_ROWS - 1 || playfield[this.y + 1][this.x].state === 1){
             this.animate('default');
-            if(crane){
-                matrix.generateCrane();
-            }
         }
     }
 

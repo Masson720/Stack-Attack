@@ -94,6 +94,26 @@ body {
     height: var(--cell-size);
 }
 
+.gameOver {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    position: absolute;
+    align-items: center;
+    z-index: 400;
+    width: 60vw;
+    height: 40vh;
+    background-color: #0099c0;
+}
+
+.gameOver-title {
+    font-size: 4vw;
+}
+
+.gameOver-score {
+    font-size: 2vw;
+}
+
 @keyframes moveLeft {
     0% {
         transform: translate3d(50px, 0, 0);

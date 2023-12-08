@@ -4,8 +4,10 @@ import { grid } from './utilites.js';
 
 export const PLAYFIELD_COLUMNS = 20;
 export const PLAYFIELD_ROWS = 9;
+export const GAME_SPEED = 400;
+const STOP_TAPING = 100;
 
-const scoreBoard = document.getElementById('score')
+const scoreBoard = document.getElementById('score');
 
 export const matrix = new Field();
 export const player = new Player();
@@ -67,11 +69,21 @@ function onKeydown(event){
         stopTaping = true;
         setTimeout(() => {
             stopTaping = false
-        }, 100);
+        }, STOP_TAPING);
     }
 }
 
 export function gameOver(){
+    const gameOverBoard = document.createElement('div');
+    const gameOverTitle = document.createElement('span');
+    const gameOverScore = document.createElement('span')
+    gameOverBoard.classList.add('gameOver');
+    gameOverTitle.classList.add('gameOver-title');
+    gameOverScore.classList.add('gameOver-score');
+    gameOverTitle.innerHTML = 'Game Over';
+    gameOverScore.innerHTML = `Score: ${score}`;
+    gameOverBoard.append(gameOverTitle, gameOverScore);
+    document.body.append(gameOverBoard);
     isGameOver = true;
 }
 
