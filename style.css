@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+:root{
+    --animate-speed: 200ms;
+}
+
 body {
     display: flex;
     justify-content: center;
@@ -58,19 +62,19 @@ body {
 }
 
 .left {
-    animation: moveLeft 200ms;
+    animation: moveLeft var(--animate-speed);
 }
 
 .right {
-    animation: moveRight 200ms;
+    animation: moveRight var(--animate-speed);
 }
 
 .up {
-    animation: moveUp 200ms;
+    animation: moveUp var(--animate-speed);
 }
 
 .down {
-    animation: moveDown 200ms;
+    animation: moveDown var(--animate-speed);
 }
 
 .grid>div>div.red-cell {

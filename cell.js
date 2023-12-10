@@ -30,23 +30,20 @@ export class Cell{
     }
 
     animate(direction){
+        this.box.classList.remove('right');
+        this.box.classList.remove('left');
+        this.box.classList.remove('down');
+        console.log(direction);
         switch(direction){
             case 'right':
-                this.box.classList.remove('left');
                 this.box.classList.add('right');
                 break;
             case 'left':
-                this.box.classList.remove('right');
                 this.box.classList.add('left');
                 break;
             case 'down':
-                this.box.classList.remove('right');
-                this.box.classList.remove('left');
                 this.box.classList.add('down');
-            case 'default':
-                this.box.classList.remove('right');
-                this.box.classList.remove('left');
-                this.box.classList.remove('down');        
+                break;  
             default:
                 break;
         }
@@ -59,16 +56,14 @@ export class Cell{
     }
 
     takeBox(direction, box){
-
         this.box = box;
         this.cell.append(this.box);
-        this.state = 1;
         this.animate(direction);
+        this.state = 1;
     }
 
     checkGround(playfield, drop){
         if(this.y < PLAYFIELD_ROWS - 1 && playfield[this.y + 1][this.x].state !== 1 && !this.strike || drop){
-            this.animate('default');
             setTimeout(() => {
                 playfield[this.y + 1][this.x].takeBox('down', playfield[this.y][this.x].giveBox());
                 playfield[this.y + 1][this.x].checkGround(playfield);
@@ -79,16 +74,6 @@ export class Cell{
         }if(this.strike){
             this.blowUp();
             this.strike = false;
-            matrix.generateCrane();
-        }
-        else{
-            this.stopDrop(playfield);
-        }
-    }
-
-    stopDrop(playfield){
-        if(this.y >= PLAYFIELD_ROWS - 1 || playfield[this.y + 1][this.x].state === 1){
-            this.animate('default');
         }
     }
 
