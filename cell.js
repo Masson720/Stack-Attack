@@ -66,8 +66,8 @@ export class Cell{
         this.animate(direction);
     }
 
-    checkGround(playfield){
-        if(this.y < PLAYFIELD_ROWS - 1 && playfield[this.y + 1][this.x].state !== 1 && !this.strike){
+    checkGround(playfield, drop){
+        if(this.y < PLAYFIELD_ROWS - 1 && playfield[this.y + 1][this.x].state !== 1 && !this.strike || drop){
             this.animate('default');
             setTimeout(() => {
                 playfield[this.y + 1][this.x].takeBox('down', playfield[this.y][this.x].giveBox());

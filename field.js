@@ -38,20 +38,20 @@ export class Field{
     checkFullRow(){
         let res = true;
         this.playfield[PLAYFIELD_ROWS - 1].forEach(element => {
-            if(element.state === 0){
+            if(element.state === 0 || element.state === 2){
                 res = false;
             }
         });
         if(res){
-            this.playfield[PLAYFIELD_ROWS - 1].forEach(element => {
+            let playfield = this.playfield;
+            playfield[PLAYFIELD_ROWS - 1].forEach(element => {
                 element.blowUp();
                 player.checkGround();
             });
-            let playfield = this.playfield;
             for(let y = PLAYFIELD_ROWS - 2; y > 0; y--){
                     playfield[y].forEach(element => {
                         if(element.state === 1){
-                                element.checkGround(playfield, false, true)
+                                element.checkGround(playfield, true);
                         }
                     })
             }
