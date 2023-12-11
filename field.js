@@ -24,6 +24,9 @@ export class Field{
             return new Cell(el.x, 8, Math.floor(Math.random() * 2));
         });
         this.generateCrane();
+        setInterval(()=> {
+            this.generateCrane();
+        }, 4000);
     }
 
     generateCrane(){

@@ -14,7 +14,6 @@ export const player = new Player();
 
 export let isGameOver = false;
 let stopTaping = false;
-
 let score = 0;
 
 function init(){

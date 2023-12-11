@@ -19,11 +19,6 @@ export class Crane{
         }, 600);
     }
 
-    moveLeft(){
-        this.playfield[this.y][this.x+1].takeBox('right', this.playfield[this.y][this.x].giveBox());
-        this.x -= 1;
-    }
-
     moveRight(){
         if(Math.floor(Math.random() * PLAYFIELD_COLUMNS / 2) === 8 || this.x >= PLAYFIELD_COLUMNS - 1){
             clearInterval(this.crane);
@@ -36,8 +31,5 @@ export class Crane{
 
     dropBox(){
         this.playfield[this.y][this.x].checkGround(this.playfield);
-        setTimeout(()=> {
-            matrix.generateCrane();
-        }, GAME_SPEED)
     }
 }
