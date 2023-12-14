@@ -61,6 +61,11 @@ body {
     z-index: 200;
 }
 
+.hitPlayer {
+    top: 0;
+    height: min(6vh, 13vw);
+}
+
 .left {
     animation: moveLeft var(--animate-speed);
 }

@@ -65,12 +65,13 @@ export class Player{
         }
     }
 
+    hitPlayer(){
+        this.player.classList.add('hitPlayer');
+        this.player.src = './img/hit.png';
+    }
+
     setAminationPlayer(state){
-        if(isGameOver){
-            this.player.src = './img/hit.png';
-        }else{
-            this.player.src = `./img/${state}.png`;
-        } 
+        this.player.src = `./img/${state}.png`;
     }
 
     movePlayer(){

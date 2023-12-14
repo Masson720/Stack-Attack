@@ -84,6 +84,7 @@ export function gameOver(){
     gameOverBoard.append(gameOverTitle, gameOverScore);
     document.body.append(gameOverBoard);
     isGameOver = true;
+    player.hitPlayer();
 }
 
 export function increaseScore(){
