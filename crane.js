@@ -20,7 +20,8 @@ export class Crane{
     }
 
     moveRight(){
-        if(Math.floor(Math.random() * PLAYFIELD_COLUMNS / 2) === 8 || this.x >= PLAYFIELD_COLUMNS - 1){
+        if(Math.floor(Math.random() * PLAYFIELD_COLUMNS / 2) === 8 || this.x >= PLAYFIELD_COLUMNS - 1 && this.playfield[this.y + 1][this.x] !== 1){
+            console.log(this.playfield[this.y + 1][this.x] !== 1);
             clearInterval(this.crane);
             this.dropBox();
         }else{

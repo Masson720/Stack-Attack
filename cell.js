@@ -33,7 +33,6 @@ export class Cell{
         this.box.classList.remove('right');
         this.box.classList.remove('left');
         this.box.classList.remove('down');
-        console.log(direction);
         switch(direction){
             case 'right':
                 this.box.classList.add('right');

@@ -49,7 +49,6 @@ export class Field{
             let playfield = this.playfield;
             playfield[PLAYFIELD_ROWS - 1].forEach(element => {
                 element.blowUp();
-                player.checkGround();
             });
             for(let y = PLAYFIELD_ROWS - 2; y > 0; y--){
                     playfield[y].forEach(element => {
@@ -58,6 +57,9 @@ export class Field{
                         }
                     })
             }
+            setTimeout(()=> {
+                player.checkGround();
+            }, 100)
         }
     }
 }
